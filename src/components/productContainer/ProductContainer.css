@@ -1,0 +1,12 @@
+.product-header {
+    display: flex;
+    align-items: center;
+}
+
+.product-title {
+    flex: 2;
+}
+
+.product-price {
+    flex: 1;
+}

@@ -1,85 +1,24 @@
-import React from "react";
-import "./topBar.css";
-import {
-    Nav,
-    Navbar,
-} from "react-bootstrap";
-import {
-    NavLink,
-    useLocation,
-    useNavigate,
-    useParams,
-} from "react-router-dom";
-import { HomeRounded } from "@mui/icons-material";
+import React from 'react'
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 
-function withRouter(Component) {
-    function ComponentWithRouterProp(props) {
-        let location = useLocation();
-        let navigate = useNavigate();
-        let params = useParams();
-        return (
-            <Component
-                {...props}
-                router={{ location, navigate, params }}
-            />
-        );
-    }
-    return ComponentWithRouterProp;
-}
+const TopBar = () => {
+    const [value, setValue] = React.useState(0);
 
-const TopBar = (props) => {
-    const pathName = props?.router.location.pathname;
-    console.log(pathName);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     return (
-        <Navbar expand="lg" sticky="top" className="topbar">
-            {/* Home Link */}
-            <Nav.Link as={NavLink} to="/WillingList">
-                <Navbar.Brand className="topbar_home">
-                    <HomeRounded />
-                </Navbar.Brand>
-            </Nav.Link>
-
-            <Navbar.Toggle />
-
-            <Navbar.Collapse>
-                <Nav className="topbar_left">
-                    <Nav.Link
-                        as={NavLink}
-                        to="/willingList"
-                        className={
-                            pathName === "/willingList" ? "topbar_link_active" : "topbar_link"
-                        }
-                    >
-                        WillingList
-                    </Nav.Link>
-
-                    <Nav.Link
-                        as={NavLink}
-                        to="/sellingItem"
-                        className={
-                            pathName === "/sellingItem" ? "topbar_link_active" : "topbar_link"
-                        }
-                    >
-                        SellingItem
-                    </Nav.Link>
-
-                    <Nav.Link
-                        as={NavLink}
-                        to="/buyingHistory"
-                        className={
-                            pathName === "/buyingHistory"
-                                ? "topbar_link_active"
-                                : "topbar_link"
-                        }
-                    >
-                        BuyingHistory
-                    </Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
+        <Tabs value={value} onChange={handleChange} aria-label="icon tabs example">
+            <Tab icon={<LocalMallIcon />} label="BUY HISTORY" />
+            <Tab icon={<FavoriteIcon />} label="WISH LIST" />
+            <Tab icon={<StorefrontIcon />} label="SELL HISTORY" />
+        </Tabs>
     );
-};
+}
 
-export default withRouter(TopBar);
-//WithRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
+export default TopBar

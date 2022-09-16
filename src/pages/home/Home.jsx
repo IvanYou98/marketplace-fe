@@ -6,15 +6,11 @@ import {
 } from "react-router-dom";
 
 import { Container, Grid } from "@mui/material";
-// import TopBar from "./components/TopBar";
-// import WillingList from "./pages/WillingList";
-// import SellingItem from "./pages/SellingItem";
-// import BuyingHistory from "./pages/BuyingHistory";
 import Profile from "../../components/profile/Profile";
 import Header from "../../components/header/Header";
 import "./Home.css"
 import { Fragment } from "react";
-import TopBar from "../../components/topbar/topBar";
+import TopBar from "../../components/topbar/TopBar";
 
 function Home() {
     return (
@@ -31,7 +27,7 @@ function Home() {
                     >
                         <Profile />
                     </Grid>
-                    <Grid item xs>
+                    <Grid item>
                         <TopBar />
                     </Grid>
                 </Grid>
