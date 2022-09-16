@@ -10,6 +10,7 @@ export default function ProductContainer({ handleModalOpen }) {
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
+                className='product-image'
                 component="img"
                 alt="green iguana"
                 height="140"
@@ -21,12 +22,12 @@ export default function ProductContainer({ handleModalOpen }) {
                     <div className='product-price' >$100</div>
                 </div>
                 <div>
-                    <p>99% New</p>
+                    <div className='product-description'>This is an apple watch</div>
                 </div>
             </CardContent>
-            <CardActions>
-                <Button size="small">Share</Button>
-                <Button size="small" onClick={() => handleModalOpen()}>Learn More</Button>
+            <CardActions className='card-actions'>
+                <div className='no-action'></div>
+                <Button className='more-btn' size="small" onClick={() => handleModalOpen()}>Learn More</Button>
             </CardActions>
         </Card>
     );

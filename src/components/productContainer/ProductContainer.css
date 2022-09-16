@@ -5,8 +5,27 @@
 
 .product-title {
     flex: 2;
+    text-align: left;
 }
 
 .product-price {
     flex: 1;
+    text-align: right;
+}
+
+.product-description {
+    text-align: left;
+}
+
+.card-actions {
+    display: flex;
+}
+
+.no-action {
+    flex: 1;
+}
+
+.product-image {
+    width: 100%;
+    object-fit:contain;
 }
