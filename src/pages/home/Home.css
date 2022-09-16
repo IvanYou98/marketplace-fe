@@ -1,0 +1,14 @@
+:root {
+    --main-color: #b1e5f8;
+}
+
+/* add some shadow here */
+
+.container_shadow {
+    box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.13);
+    -webkit-box-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.13);
+    -moz-bos-shadow: 0px 2px 92px 0px rgba(0, 0, 0, 0.13);
+}
+.home-container {
+    margin-top: 30px;
+}

@@ -1,0 +1,55 @@
+.profile{
+    background-color: white;
+    border-radius: 6px;
+    width: 100%;
+    display: inline-block;
+}
+
+.profile_name{
+    line-height: 18px;
+    padding: 20px;
+}
+
+/* need to add a space between . */
+.profile_name .name{
+    text-transform: uppercase;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* .profile_name.title{
+    font-size: 13px;
+    color: #777;
+} */
+
+.profile_image{
+    margin-top: -10px;
+    -webkit-clip-path: polygon(0 9%, 100% 0, 100% 94%, 0% 100%);
+    clip-path: polygon(0 9%, 100% 0, 100% 94%, 0% 100%);
+}
+
+.profile_image img{
+    width: 100%;
+}
+
+/* Information */
+.profile_information{
+    top: 0;
+    left: 0;
+    margin: -54px 10px 30px;
+}
+
+.profile_information .timeline .timeline_content{
+    margin-top: 2px;
+    margin-bottom: 12px;
+}
+
+.timelineItem_text{
+    font-size: 14.5px !important;
+    color:#787878;
+    font-weight: 400;
+}
+
+.timelineItem_text > span{
+    color: black;
+}

@@ -1,0 +1,27 @@
+.search-bar-container {
+    width: 80%;
+    height: 40px;
+    margin: auto;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    display: flex;
+}
+
+.search-category {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    border-right-style: solid;
+    border-right-width: 1px;
+}
+.search-input {
+    flex-grow: 5;
+    padding: 10px;
+}
+
+.search-category {
+    border-radius: 0;
+    border-right-style: 2px;
+}

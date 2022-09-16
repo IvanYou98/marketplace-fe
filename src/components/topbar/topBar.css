@@ -1,0 +1,31 @@
+.topbar{
+    margin-bottom: 30px !important;
+    background-color: white !important;
+    padding: 0 22px 0 0 !important;
+    border-radius: 6px !important;
+    box-shadow: 0px 2px 92px 0px rgba(0,0,0,0.07) !important;
+}
+
+.topbar .topbar_link {
+    font-weight: 500;
+    color: darkslategray !important;
+}
+
+.topbar .topbar_link:hover{
+    color: var(--main-color) !important;
+}
+
+.topbar .topbar_link_active{
+    font-weight: 500;
+    color: var(--main-color) !important;
+}
+
+.topbar .topbar_home{
+    background-color: var(--main-color);
+    padding: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
