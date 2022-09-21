@@ -10,7 +10,7 @@ import Profile from "../../components/profile/Profile";
 import Header from "../../components/header/Header";
 import "./Home.css"
 import { Fragment } from "react";
-import TopBar from "../../components/topbar/TopBar";
+import TopBar from "../../components/topbar/topBar";
 
 function Home() {
     return (
