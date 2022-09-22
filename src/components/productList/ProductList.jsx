@@ -9,15 +9,18 @@ const ProductList = ({ handleModalOpen }) => {
         rows.push({});
     }
     return (
-        <Grid className='product-list-container' container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-            {
-                rows.map(row => (
-                    <Grid item xs={3}>
-                        <ProductContainer handleModalOpen={handleModalOpen} />
-                    </Grid>
-                ))
-            }
-        </Grid>
+        <div className='product-list-container'>
+            <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                {
+                    rows.map(row => (
+                        <Grid item xs={3}>
+                            <ProductContainer handleModalOpen={handleModalOpen} />
+                        </Grid>
+                    ))
+                }
+            </Grid>
+        </div>
+
     )
 }
 

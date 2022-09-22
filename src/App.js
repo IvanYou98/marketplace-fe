@@ -9,6 +9,7 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import Product from './pages/product/Product';
 import Home from './pages/home/Home';
+import CreatePost from './pages/createPost/CreatePost';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/login' exact element={<Login />} />
         <Route path='/signup' exact element={<Signup />} />
         <Route path='/product' exact element={< Product />} />
+        <Route path="/product/create" exact element={<CreatePost />} />
       </Routes>
     </div>
   );

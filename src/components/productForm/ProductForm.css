@@ -1,0 +1,39 @@
+.product-form-container {
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px 10px;
+}
+
+.product-form-column-container{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+}
+
+
+.product-form-left {
+    flex: 1;
+}
+
+.product-form-right {
+    flex: 1;
+    
+}
+
+.product-form-text-area-container {
+    width: 100%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.product-form-text-area-label {
+    width: 15%;
+    font-size: 20px;
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.product-form-text-area {
+    width: 80%;
+}

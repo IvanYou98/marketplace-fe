@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+
 import './Header.css'
 import SearchBar from '../searchbar/SearchBar';
 
@@ -40,6 +42,7 @@ const Header = () => {
                         <Fragment>
                             <AccountCircleIcon className='nav-icons' onClick={() => navigate('/home')} />
                             <FavoriteIcon className='nav-icons' />
+                            <AddCircleIcon className='nav-icons' onClick={() => navigate('/product/create')} />
                             <NotificationsIcon className='nav-icons' />
                             <span className='logout-btn' onClick={handleLogout}>
                                 LOG OUT
