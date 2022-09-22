@@ -6,17 +6,21 @@ import FormInput from '../formInput/FormInput'
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 
-const ProductForm = () => {
-    const [title, setTitle] = useState("");
-    const [category, setCategory] = useState("");
-    const [price, setPrice] = useState(0);
-    const [originalPrice, setOriginalPrice] = useState(0);
+const ProductForm = ({titleProps="", categoryProps="", priceProps=0, originalPriceProps=0, descriptionProps="", addressProps="", ...props}) => {
+    const [title, setTitle] = useState(props.title);
+    const [category, setCategory] = useState(props.category);
+    const [price, setPrice] = useState(props.price);
+    const [originalPrice, setOriginalPrice] = useState(props.originalPrice);
+    const [description, setDescription] = useState(props.description);
+    const [address, setAddress] = useState(props.address);
+
+
 
     return (
         <Box sx={{ flexGrow: 1 }} className='product-form-container'>
             <Grid container spacing={1}>
                 <Grid item xs={12}>
-                    <h2>CREATE POST</h2>
+                    <h2>{props.formTitle}</h2>
                 </Grid>
                 <Grid item xs={6}>
                     <FormInput name="Title" value={title} setValue={setTitle} />
@@ -38,6 +42,7 @@ const ProductForm = () => {
                             className='product-form-text-area'
                             multiline
                             rows={4}
+                            value={description}
                         />
                     </div>
                 </Grid>
@@ -48,11 +53,12 @@ const ProductForm = () => {
                             className='product-form-text-area'
                             multiline
                             rows={4}
+                            value={address}
                         />
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <Button variant="contained">Create Post</Button>
+                    <Button variant="contained" onClick={props.onSubmit}>{props.bottonText}</Button>
                 </Grid>
             </Grid>
         </Box>

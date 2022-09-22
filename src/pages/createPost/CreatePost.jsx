@@ -5,7 +5,7 @@ const CreatePost = () => {
     return (
         <Fragment>
             <Header />
-            <ProductForm />
+            <ProductForm formTitle="CREATE POST" bottonText="CREATE POST" />
         </Fragment>
     )
 }
