@@ -9,6 +9,7 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import Product from './pages/product/Product';
 import Home from './pages/home/Home';
+import Search from './pages/serach/Search'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/login' exact element={<Login />} />
         <Route path='/signup' exact element={<Signup />} />
         <Route path='/product' exact element={< Product />} />
+        <Route path='/search' exact element={<Search />} />
       </Routes>
     </div>
   );

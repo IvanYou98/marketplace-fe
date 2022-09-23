@@ -4,6 +4,7 @@ import ProductList from '../../components/productList/ProductList'
 import ProductModal from '../../components/productModal/ProductModal'
 
 const Search = () => {
+
     const [modalOpen, setModalOpen] = useState(false);
     const handleModalOpen = () => setModalOpen(true);
     const handleModalClose = () => setModalOpen(false);
