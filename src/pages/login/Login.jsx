@@ -5,6 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../service/authService';
+import axios from 'axios';
 
 
 export default function Login({ handleChange }) {
@@ -14,11 +15,18 @@ export default function Login({ handleChange }) {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-        });
-        signIn(navigate, data.get("email"), data.get("password"));
+        axios.post("http://localhost:8000/api/auth/login", {
+            username: data.get("username"),
+            password: data.get("password")
+        }).then(res => {
+            const loginUser = res.data;
+            console.log(loginUser);
+            localStorage.setItem('token', loginUser.accessToken);
+            localStorage.setItem('currentUser', loginUser.username);
+            navigate("/")
+        }).catch(err => {
+            window.alert(err.response.data)
+        })
     };
 
     const paperStyle = { padding: 20, height: '73vh', width: 300, margin: "30px auto" }
@@ -37,7 +45,7 @@ export default function Login({ handleChange }) {
                     onSubmit={handleSubmit}
                     sx={{ mt: 1 }}
                 >
-                    <TextField name='email' label='Email' placeholder='Enter email' fullWidth required />
+                    <TextField name='username' label='Username' placeholder='Enter username' fullWidth required />
                     <TextField name='password' label='Password' placeholder='Enter password' type='password' fullWidth required />
                     <FormControlLabel
                         control={

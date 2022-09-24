@@ -6,6 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useNavigate } from 'react-router-dom';
 import { signUp } from '../../service/authService';
+import axios from 'axios';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,24}$/;
@@ -40,11 +41,15 @@ export default function Signup() {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
-        console.log({
+        axios.post("http://localhost:8000/api/auth/register", {
+            username: user,
             email: email,
-            password: data.get("password"),
-        });
-        signUp(navigate, email, data.get("password"));
+            password: data.get("password")
+        }).then(res => {
+            navigate("/login");
+        }).catch(err => {
+            window.alert(err.response.data);
+        })
     };
 
     const paperStyle = { padding: 20, width: 300, margin: "30px auto" }

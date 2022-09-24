@@ -1,23 +1,38 @@
 import React, { useState } from 'react'
-import './ProductForm.css'
+import './CreateProductForm.css'
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import FormInput from '../formInput/FormInput'
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
 
 const ProductForm = () => {
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
     const [price, setPrice] = useState(0);
-    const [originalPrice, setOriginalPrice] = useState(0);
+    const [desc, setDesc] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
+
+    const handleSubmit = () => {
+        axios.post("http://localhost:8000/api/product/", {
+            title: title,
+            desc: desc,
+            categories: [category],
+            imgs: [imageUrl],
+            price: price
+        }, {
+            headers: {
+                token: "bearer " + localStorage.getItem("token")
+            }
+        }).then(res => {
+            console.log(res.data);
+        })
+    }
 
     return (
         <Box sx={{ flexGrow: 1 }} className='product-form-container'>
             <Grid container spacing={1}>
-                <Grid item xs={12}>
-                    <h2>CREATE POST</h2>
-                </Grid>
                 <Grid item xs={6}>
                     <FormInput name="Title" value={title} setValue={setTitle} />
                 </Grid>
@@ -28,7 +43,7 @@ const ProductForm = () => {
                     <FormInput name="Price" value={price} setValue={setPrice} />
                 </Grid>
                 <Grid item xs={6}>
-                    <FormInput name="Original Price" value={originalPrice} setValue={setOriginalPrice} />
+                    <FormInput name="Image URL" value={imageUrl} setValue={setImageUrl} />
                 </Grid>
 
                 <Grid item xs={12}>
@@ -38,6 +53,8 @@ const ProductForm = () => {
                             className='product-form-text-area'
                             multiline
                             rows={4}
+                            value={desc}
+                            onChange={(e) => setDesc(e.target.value)}
                         />
                     </div>
                 </Grid>
@@ -52,7 +69,7 @@ const ProductForm = () => {
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <Button variant="contained">Create Post</Button>
+                    <Button variant="contained" onClick={handleSubmit}>Create Post</Button>
                 </Grid>
             </Grid>
         </Box>

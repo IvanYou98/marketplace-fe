@@ -9,6 +9,9 @@ import PersonIcon from "@mui/icons-material/Person";
 import "./Profile.css";
 import { TimelineContent } from "@mui/lab";
 import { Fragment } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+
 
 const virtualData = {
     name: "Wan Kaining",
@@ -20,6 +23,9 @@ const virtualData = {
 }
 
 const CustomTimelineItem = ({ title, text }) => {
+    useEffect(() => {
+
+    }, [])
     return (
         <TimelineItem>
             <CustomTimelineSeparator />

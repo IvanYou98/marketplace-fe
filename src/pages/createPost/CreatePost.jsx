@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import Header from '../../components/header/Header'
-import ProductForm from '../../components/productForm/ProductForm'
+import ProductForm from '../../components/productForm/CreateProductForm'
 const CreatePost = () => {
     return (
         <Fragment>
