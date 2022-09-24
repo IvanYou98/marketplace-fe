@@ -2,7 +2,6 @@ import { Typography } from "@mui/material";
 import React from "react";
 import CustomTimeline, { CustomTimelineSeparator } from "../timeline/TimeLine";
 import TimelineItem from "@mui/lab/TimelineItem";
-import Header from "../header/Header";
 
 import PersonIcon from "@mui/icons-material/Person";
 
@@ -10,7 +9,6 @@ import "./Profile.css";
 import { TimelineContent } from "@mui/lab";
 import { Fragment } from "react";
 import { useEffect } from "react";
-import axios from "axios";
 
 
 const virtualData = {
@@ -38,13 +36,13 @@ const CustomTimelineItem = ({ title, text }) => {
     )
 };
 
-const Profile = () => {
+const Profile = ({ user }) => {
     return (
         <Fragment>
             <div className="profile container_shadow">
                 <div className="profile_name">
-                    <Typography className="name">{virtualData.name}</Typography>
-                    <Typography className="title">{virtualData.tilte}</Typography>
+                    <Typography className="name">{user.username}</Typography>
+                    <Typography className="title">{user.isAdmin ? "Admin" : "Normal User"}</Typography>
                 </div>
 
                 <figure className="profile_image">
@@ -54,7 +52,7 @@ const Profile = () => {
                 <div className="profile_information">
                     <CustomTimeline icon={<PersonIcon />} >
                         <CustomTimelineItem title='phone' text={virtualData.phoneNumber} />
-                        <CustomTimelineItem title='email' text={virtualData.email} />
+                        <CustomTimelineItem title='email' text={user.email} />
                         <CustomTimelineItem title='birthday' text={virtualData.birthday} />
                     </CustomTimeline>
                     <br />

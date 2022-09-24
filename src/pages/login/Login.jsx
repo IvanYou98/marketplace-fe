@@ -22,6 +22,7 @@ export default function Login({ handleChange }) {
             const loginUser = res.data;
             console.log(loginUser);
             localStorage.setItem('token', loginUser.accessToken);
+            localStorage.setItem('userId', loginUser._id);
             localStorage.setItem('currentUser', loginUser.username);
             navigate("/")
         }).catch(err => {

@@ -11,8 +11,24 @@ import Header from "../../components/header/Header";
 import "./Home.css"
 import { Fragment } from "react";
 import TopBar from "../../components/topbar/TopBar";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 function Home() {
+    const [user, setUser] = useState("");
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/user/${localStorage.getItem("userId")}`, {
+            headers: {
+                token: "bearer " + localStorage.getItem("token")
+            }
+        }).then(res => {
+            setUser(res.data);
+        }).catch(err => {
+            console.log(err.res.data);
+        })
+    }, [])
     return (
         <Fragment>
             <Header />
@@ -25,7 +41,7 @@ function Home() {
                         md={3}
                         lg={4}
                     >
-                        <Profile />
+                        <Profile user={user} />
                     </Grid>
                     <Grid item>
                         <TopBar />

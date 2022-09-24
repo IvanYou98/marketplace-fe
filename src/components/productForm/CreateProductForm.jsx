@@ -6,6 +6,7 @@ import FormInput from '../formInput/FormInput'
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ProductForm = () => {
     const [title, setTitle] = useState("");
@@ -13,6 +14,7 @@ const ProductForm = () => {
     const [price, setPrice] = useState(0);
     const [desc, setDesc] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = () => {
         axios.post("http://localhost:8000/api/product/", {
@@ -27,6 +29,7 @@ const ProductForm = () => {
             }
         }).then(res => {
             console.log(res.data);
+            navigate("/");
         })
     }
 
