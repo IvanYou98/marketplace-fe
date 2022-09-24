@@ -1,3 +1,7 @@
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/header/Header";
 
@@ -60,30 +64,41 @@ const Button = styled.button`
 `;
 
 const Product = () => {
-    return (
-        <Container>
-            <Header />
-            <Wrapper>
-                <ImgContainer>
-                    <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
-                </ImgContainer>
-                <InfoContainer>
-                    <Title>Denim Jumpsuit</Title>
-                    <Desc>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                        venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
-                        iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
-                        tristique tortor pretium ut. Curabitur elit justo, consequat id
-                        condimentum ac, volutpat ornare.
-                    </Desc>
-                    <Price>$ 20</Price>
-                    <AddContainer>
-                        <Button>ADD TO WISH LIST</Button>
-                    </AddContainer>
-                </InfoContainer>
-            </Wrapper>
-        </Container>
-    );
+  let { productId } = useParams();
+  const [product, setProduct] = useState();
+
+  useEffect(() => {
+    axios.get(`http://localhost:8000/api/product/${productId}`, {
+      headers: {
+        token: localStorage.getItem("token")
+      }
+    }).then(res => {
+      setProduct(res.data);
+    }).catch(err => {
+      console.log(err.res.data);
+    })
+  }, [productId])
+
+  return (
+    <Container>
+      <Header />
+      <Wrapper>
+        <ImgContainer>
+          <Image src={product.imgs[0]} />
+        </ImgContainer>
+        <InfoContainer>
+          <Title>{product.title}</Title>
+          <Desc>
+            {product.desc}
+          </Desc>
+          <Price>$ {product.price}</Price>
+          <AddContainer>
+            <Button>ADD TO WISH LIST</Button>
+          </AddContainer>
+        </InfoContainer>
+      </Wrapper>
+    </Container>
+  );
 };
 
 export default Product;

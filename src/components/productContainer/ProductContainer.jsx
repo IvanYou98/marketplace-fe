@@ -5,8 +5,12 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import './ProductContainer.css'
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductContainer({ handleModalOpen, product }) {
+
+    const navigate = useNavigate();
+
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
@@ -27,7 +31,7 @@ export default function ProductContainer({ handleModalOpen, product }) {
             </CardContent>
             <CardActions className='card-actions'>
                 <div className='no-action'></div>
-                <Button className='more-btn' size="small" onClick={() => handleModalOpen()}>Learn More</Button>
+                <Button className='more-btn' size="small" onClick={() => navigate(`/product/${product._id}`)}>Learn More</Button>
             </CardActions>
         </Card>
     );
