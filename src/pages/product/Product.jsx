@@ -1,9 +1,12 @@
 import axios from "axios";
+import CircularProgress from '@mui/material/CircularProgress';
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/header/Header";
+import { useDispatch } from "react-redux";
+import { setWishList } from "../../redux/wishListRedux";
 
 const Container = styled.div``;
 
@@ -66,38 +69,60 @@ const Button = styled.button`
 const Product = () => {
   let { productId } = useParams();
   const [product, setProduct] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    setIsLoading(true);
     axios.get(`http://localhost:8000/api/product/${productId}`, {
       headers: {
         token: localStorage.getItem("token")
       }
     }).then(res => {
       setProduct(res.data);
+      setIsLoading(false);
+    }).catch(err => {
+      console.log(err.res.data);
+      setIsLoading(false);
+    })
+  }, [productId])
+
+  const handleClick = () => {
+    // add the current product to the wishlist
+    axios.get(`http://localhost:8000/api/wishlist/${productId}`, {
+      headers: {
+        token: "bearer " + localStorage.getItem("token")
+      }
+    }).then(res => {
+      dispatch(setWishList(res.data));
     }).catch(err => {
       console.log(err.res.data);
     })
-  }, [productId])
+  }
 
   return (
     <Container>
       <Header />
-      <Wrapper>
-        <ImgContainer>
-          <Image src={product.imgs[0]} />
-        </ImgContainer>
-        <InfoContainer>
-          <Title>{product.title}</Title>
-          <Desc>
-            {product.desc}
-          </Desc>
-          <Price>$ {product.price}</Price>
-          <AddContainer>
-            <Button>ADD TO WISH LIST</Button>
-          </AddContainer>
-        </InfoContainer>
-      </Wrapper>
-    </Container>
+      {
+        isLoading ? <CircularProgress /> : (
+          <Wrapper>
+            <ImgContainer>
+              <Image src={product.imgs[0]} />
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{product.title}</Title>
+              <Desc>
+                {product.desc}
+              </Desc>
+              <Price>$ {product.price}</Price>
+              <AddContainer>
+                <Button onClick={handleClick}>ADD TO WISH LIST</Button>
+              </AddContainer>
+            </InfoContainer>
+          </Wrapper>
+        )
+      }
+    </Container >
   );
 };
 

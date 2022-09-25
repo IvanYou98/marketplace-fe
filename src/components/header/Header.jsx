@@ -7,26 +7,43 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import './Header.css'
 import SearchBar from '../searchbar/SearchBar';
+import { useDispatch, useSelector } from 'react-redux';
+import Badge from '@mui/material/Badge';
+import axios from 'axios';
+import { setWishList } from '../../redux/wishListRedux';
 
 const Header = () => {
     const [currentUser, setCurrentUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const dispatch = useDispatch();
+    const wishList = useSelector(state => state.wishList);
+
     let navigate = useNavigate();
 
     useEffect(() => {
         let currentUser = localStorage.getItem('currentUser');
         setIsLoggedIn(currentUser != null);
-        setCurrentUser(currentUser)
+        setCurrentUser(currentUser);
     }, [])
 
-    const handleLogout = () => {
 
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/wishlist", {
+            headers: {
+                token: "bearer " + localStorage.getItem("token")
+            }
+        }).then(res => {
+            dispatch(setWishList(res.data))
+            console.log(res.data);
+        })
+    })
+
+    const handleLogout = () => {
         localStorage.removeItem('currentUser')
         setCurrentUser(null);
         setIsLoggedIn(false);
         navigate('/login')
     }
-
 
     return (
         <Fragment>
@@ -41,7 +58,9 @@ const Header = () => {
                     {isLoggedIn ?
                         <Fragment>
                             <AccountCircleIcon className='nav-icons' onClick={() => navigate('/home')} />
-                            <FavoriteIcon className='nav-icons' />
+                            <Badge badgeContent={wishList.products.length} color='primary'>
+                                <FavoriteIcon className='nav-icons' onClick={() => navigate("/home/2")} />
+                            </Badge>
                             <AddCircleIcon className='nav-icons' onClick={() => navigate('/product/create')} />
                             <NotificationsIcon className='nav-icons' />
                             <span className='logout-btn' onClick={handleLogout}>

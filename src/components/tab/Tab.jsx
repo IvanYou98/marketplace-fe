@@ -4,10 +4,9 @@ import Tab from '@mui/material/Tab';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
-import axios from 'axios';
 
 const TopBar = () => {
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = React.useState(1);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
