@@ -5,6 +5,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import WishList from '../wishList/WishList';
+import SellHistory from '../sellHistory/SellHistory';
 import "./Tab.css"
 import { useSelector } from 'react-redux';
 
@@ -24,6 +25,7 @@ const TopBar = () => {
                 <Tab icon={<StorefrontIcon />} label="SELL HISTORY" />
             </Tabs>
             {value === 1 && (<WishList products={products} />)}
+            {value === 2 && (<SellHistory />)}
         </Fragment>
     );
 }

@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react'
 import Header from '../../components/header/Header'
-import CreateProductForm from '../../components/productForm/CreateProductForm'
-const CreatePost = () => {
+import EditProductForm from '../../components/productForm/EditProductForm'
+const EditPost = () => {
     return (
         <Fragment>
             <Header />
-            <CreateProductForm />
+            <EditProductForm />
         </Fragment>
     )
 }
 
-export default CreatePost
+export default EditPost

@@ -1,38 +1,26 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import './ProductContainer.css'
 import { useNavigate } from 'react-router-dom';
 
-export default function ProductContainer({ handleModalOpen, product }) {
+export default function ProductContainer({ product }) {
 
     const navigate = useNavigate();
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-                className='product-image'
-                component="img"
-                alt="green iguana"
-                height="140"
-                image={product.imgs[0]}
-            />
-            <CardContent>
-                <div className='product-header'>
-                    <h4 className='product-title'>{product.title}</h4>
-                    <div className='product-price' >${product.price}</div>
-                </div>
-                <div>
-                    <div className='product-description'>{product.desc}</div>
-                </div>
-            </CardContent>
-            <CardActions className='card-actions'>
-                <div className='no-action'></div>
-                <Button className='more-btn' size="small" onClick={() => navigate(`/product/${product._id}`)}>Learn More</Button>
-            </CardActions>
-        </Card>
+        <div className='product-card-container'>
+            <img className='product-card-image' src={product.imgs[0]} alt="product" />
+            <div class="product-card-header">
+                <div className='product-card-title'>{product.title}</div>
+                <div className='product-card-price' >${product.price}</div>
+            </div>
+            <div class="product-card-description">
+                {product.desc}
+            </div>
+            <div className='product-card-footer'>
+                <Button onClick={() => navigate(`/product/${product._id}`)} >Learn More</Button>
+            </div>
+
+        </div>
     );
 }

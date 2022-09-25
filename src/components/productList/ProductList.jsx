@@ -9,9 +9,11 @@ const ProductList = ({ handleModalOpen, products }) => {
             <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 {
                     products.map(product => (
-                        <Grid item xs={3} key={product._id}>
-                            <ProductContainer product={product} handleModalOpen={handleModalOpen} />
-                        </Grid>
+                        product.status === "selling" && (
+                            <Grid item xs={3} key={product._id}>
+                                <ProductContainer product={product} handleModalOpen={handleModalOpen} />
+                            </Grid>
+                        )
                     ))
                 }
             </Grid>

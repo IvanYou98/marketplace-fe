@@ -9,6 +9,7 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import Product from './pages/product/Product';
 import Home from './pages/home/Home';
+import EditPost from './pages/editPost/EditPost'
 import CreatePost from './pages/createPost/CreatePost';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/signup' exact element={<Signup />} />
         <Route path='/product/:productId' exact element={< Product />} />
         <Route path="/product/create" exact element={<CreatePost />} />
+        <Route path="/product/edit/:productId" element={<EditPost />} />
       </Routes>
     </div>
   );

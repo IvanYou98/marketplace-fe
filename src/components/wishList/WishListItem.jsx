@@ -7,6 +7,7 @@ import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 import { setWishList } from '../../redux/wishListRedux';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
     width: 100%;
@@ -56,6 +57,7 @@ const WishListItem = ({ productId }) => {
     const [product, setProduct] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         setIsLoading(true);
@@ -88,20 +90,27 @@ const WishListItem = ({ productId }) => {
         <Fragment>
             {
                 isLoading ? <CircularProgress /> :
-                    (<Container>
-                        <LeftSide>
-                            <ProductImg src={product.imgs[0]} />
-                        </LeftSide>
-                        <MidSide>
-                            <div>{product.title}</div>
-                            <div>$ {product.price}</div>
-                        </MidSide>
-                        <RightSide>
-                            <RemoveRedEyeIcon />
-                            <DeleteIcon onClick={handleRemove} />
-                            <PaymentIcon />
-                        </RightSide>
-                    </Container>)
+                    (product &&
+                        <Container>
+                            <LeftSide>
+                                <ProductImg src={product.imgs[0]} />
+                            </LeftSide>
+                            <MidSide>
+                                <div>{product.title}</div>
+                                <div>$ {product.price}</div>
+                                <div>
+                                    {product.status === "selling" && (<div style={{ 'color': 'green' }} >Selling</div>)}
+                                    {product.status === "sold" && (<div style={{ 'color': 'gold' }} >Sold</div>)}
+                                    {product.status === "removed" && (<div style={{ 'color': 'red' }} >Removed</div>)}
+
+                                </div>
+                            </MidSide>
+                            <RightSide>
+                                <RemoveRedEyeIcon style={{ 'cursor': 'pointer' }} onClick={() => navigate(`/product/${productId}`)} />
+                                <DeleteIcon style={{ 'cursor': 'pointer' }} onClick={handleRemove} />
+                                <PaymentIcon style={{ 'cursor': 'pointer' }} />
+                            </RightSide>
+                        </Container>)
             }
         </Fragment >
     )
