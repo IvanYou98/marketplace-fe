@@ -6,7 +6,7 @@ import './SearchBar.css'
 import { useState } from 'react';
 
 const SearchBar = () => {
-    const [category, setCategory] = React.useState('Category');
+    const [category, setCategory] = React.useState(0);
 
     const handleChange = (event) => {
         setCategory(event.target.value);

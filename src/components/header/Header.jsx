@@ -34,9 +34,8 @@ const Header = () => {
             }
         }).then(res => {
             dispatch(setWishList(res.data))
-            console.log(res.data);
         })
-    })
+    }, [])
 
     const handleLogout = () => {
         localStorage.removeItem('currentUser')
@@ -59,7 +58,7 @@ const Header = () => {
                         <Fragment>
                             <AccountCircleIcon className='nav-icons' onClick={() => navigate('/home')} />
                             <Badge badgeContent={wishList.products.length} color='primary'>
-                                <FavoriteIcon className='nav-icons' onClick={() => navigate("/home/2")} />
+                                <FavoriteIcon className='nav-icons' onClick={() => navigate("/home")} />
                             </Badge>
                             <AddCircleIcon className='nav-icons' onClick={() => navigate('/product/create')} />
                             <NotificationsIcon className='nav-icons' />

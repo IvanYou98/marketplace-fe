@@ -31,7 +31,7 @@ function Home() {
                     <Grid item xs={12} sm={12} md={3} lg={4}>
                         <Profile user={user} />
                     </Grid>
-                    <Grid item>
+                    <Grid item md={9} lg={8}>
                         <Tab />
                     </Grid>
                 </Grid>

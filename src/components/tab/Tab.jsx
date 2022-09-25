@@ -1,30 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
+import WishList from '../wishList/WishList';
+import "./Tab.css"
+import { useSelector } from 'react-redux';
 
 const TopBar = () => {
     const [value, setValue] = React.useState(1);
+    const products = useSelector(state => state.wishList.products);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-    useEffect(() => {
-        console.log("current value: ", value);
-        if (value === 2) {
-
-        }
-    }, [value])
-
     return (
-        <Tabs value={value} onChange={handleChange} aria-label="icon tabs example">
-            <Tab icon={<LocalMallIcon />} label="BUY HISTORY" />
-            <Tab icon={<FavoriteIcon />} label="WISH LIST" />
-            <Tab icon={<StorefrontIcon />} label="SELL HISTORY" />
-        </Tabs>
+        <Fragment>
+            <Tabs className='tabs-container' value={value} onChange={handleChange} aria-label="icon tabs example">
+                <Tab icon={<LocalMallIcon />} label="BUY HISTORY" />
+                <Tab icon={<FavoriteIcon />} label="WISH LIST" />
+                <Tab icon={<StorefrontIcon />} label="SELL HISTORY" />
+            </Tabs>
+            {value === 1 && (<WishList products={products} />)}
+        </Fragment>
     );
 }
 
