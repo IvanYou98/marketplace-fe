@@ -5,21 +5,25 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { setUser } from '../../redux/userRedux';
+import { useDispatch } from 'react-redux';
+import { BACKEDN_API } from '../../constant';
 
 
 export default function Login({ handleChange }) {
     let navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
-        axios.post("http://localhost:8000/api/auth/login", {
+        axios.post(`${BACKEDN_API}/auth/login`, {
             username: data.get("username"),
             password: data.get("password")
         }).then(res => {
             const loginUser = res.data;
-            console.log(loginUser);
+            dispatch(setUser(loginUser));
             localStorage.setItem('token', loginUser.accessToken);
             localStorage.setItem('userId', loginUser._id);
             localStorage.setItem('currentUser', loginUser.username);

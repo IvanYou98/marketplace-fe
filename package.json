@@ -23,6 +23,7 @@
     "react-scripts": "5.0.1",
     "react-simple-image-slider": "^2.4.1",
     "react-slick": "^0.29.0",
+    "react-stripe-checkout": "^2.6.3",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },

@@ -2,12 +2,13 @@ import React, { Fragment, useEffect, useState } from 'react'
 import styled from "styled-components";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import DeleteIcon from '@mui/icons-material/Delete';
-import PaymentIcon from '@mui/icons-material/Payment';
+
 import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 import { setWishList } from '../../redux/wishListRedux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Checkout from '../checkout/Checkout'
 
 const Container = styled.div`
     width: 100%;
@@ -108,7 +109,7 @@ const WishListItem = ({ productId }) => {
                             <RightSide>
                                 <RemoveRedEyeIcon style={{ 'cursor': 'pointer' }} onClick={() => navigate(`/product/${productId}`)} />
                                 <DeleteIcon style={{ 'cursor': 'pointer' }} onClick={handleRemove} />
-                                <PaymentIcon style={{ 'cursor': 'pointer' }} />
+                                <Checkout product={product} />
                             </RightSide>
                         </Container>)
             }

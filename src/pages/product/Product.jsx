@@ -5,8 +5,9 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/header/Header";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setWishList } from "../../redux/wishListRedux";
+import { BACKEDN_API } from "../../constant";
 
 const Container = styled.div``;
 
@@ -74,7 +75,7 @@ const Product = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`http://localhost:8000/api/product/${productId}`, {
+    axios.get(`${BACKEDN_API}/product/${productId}`, {
       headers: {
         token: localStorage.getItem("token")
       }
@@ -89,7 +90,7 @@ const Product = () => {
 
   const handleClick = () => {
     // add the current product to the wishlist
-    axios.get(`http://localhost:8000/api/wishlist/${productId}`, {
+    axios.get(`${BACKEDN_API}/wishlist/${productId}`, {
       headers: {
         token: "bearer " + localStorage.getItem("token")
       }
