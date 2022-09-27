@@ -6,11 +6,13 @@ import './SearchBar.css'
 import { useState } from 'react';
 import axios from 'axios';
 import { BACKEDN_API } from '../../constant';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
     const [options, setOptions] = useState([]);
     const [optionIdx, setOptionIdx] = useState(0);
     const [keyword, setKeyword] = useState("");
+    const navigate = useNavigate();
 
     const handleOptionChange = (event) => {
         setOptionIdx(event.target.value);
@@ -19,9 +21,10 @@ const SearchBar = () => {
     const handleSearch = () => {
         console.log("keyword: " + keyword);
         console.log("option: " + options[optionIdx]);
-        axios.get(`${BACKEDN_API}/product${optionIdx === 0 ? "" : "?category=" + options[optionIdx]}`).then(res =>
-            console.log(res.data)
-        )
+        navigate(`/product/search?category=${options[optionIdx]}&keyword=${keyword}`);
+        // axios.get(`${BACKEDN_API}/product${optionIdx === 0 ? "" : "?category=" + options[optionIdx]}`).then(res =>
+        //     console.log(res.data)
+        // )
     }
 
     useEffect(() => {

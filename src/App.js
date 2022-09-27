@@ -11,6 +11,7 @@ import Product from './pages/product/Product';
 import Home from './pages/home/Home';
 import EditPost from './pages/editPost/EditPost'
 import CreatePost from './pages/createPost/CreatePost';
+import SearchResult from './pages/searchResult/SearchResult';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/product/:productId' exact element={< Product />} />
         <Route path="/product/create" exact element={<CreatePost />} />
         <Route path="/product/edit/:productId" element={<EditPost />} />
+        <Route path="/product/search" element={<SearchResult />} />
       </Routes>
     </div>
   );
