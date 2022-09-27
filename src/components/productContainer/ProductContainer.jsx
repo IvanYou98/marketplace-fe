@@ -10,17 +10,17 @@ export default function ProductContainer({ product }) {
     return (
         <div className='product-card-container'>
             <img className='product-card-image' src={product.imgs[0]} alt="product" />
-            <div class="product-card-header">
+            <div className="product-card-header">
                 <div className='product-card-title'>{product.title}</div>
                 <div className='product-card-price' >${product.price}</div>
             </div>
-            <div class="product-card-description">
+            <div className="product-card-description">
                 {product.desc}
             </div>
             <div className='product-card-footer'>
                 <Button onClick={() => navigate(`/product/${product._id}`)} >Learn More</Button>
             </div>
 
-        </div>
+        </div >
     );
 }

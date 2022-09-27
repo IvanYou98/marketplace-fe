@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Badge from '@mui/material/Badge';
 import axios from 'axios';
 import { setWishList } from '../../redux/wishListRedux';
+import { BACKEDN_API } from '../../constant';
 
 const Header = () => {
     const [currentUser, setCurrentUser] = useState(null);
@@ -28,14 +29,23 @@ const Header = () => {
 
 
     useEffect(() => {
-        axios.get("http://localhost:8000/api/wishlist", {
+        axios.get(`${BACKEDN_API}/wishlist`, {
             headers: {
                 token: "bearer " + localStorage.getItem("token")
             }
         }).then(res => {
             dispatch(setWishList(res.data))
+            axios.get(`${BACKEDN_API}/category`).then(res =>
+                console.log(res.data)
+            )
+        }).catch(err => {
+            localStorage.removeItem("token");
+            setIsLoggedIn(false);
+            console.log(err)
         })
     }, [])
+
+
 
     const handleLogout = () => {
         localStorage.removeItem('currentUser')

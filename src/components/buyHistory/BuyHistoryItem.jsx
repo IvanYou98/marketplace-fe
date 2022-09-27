@@ -1,12 +1,8 @@
 import React, { Fragment, useEffect } from 'react'
 import styled from "styled-components";
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
 import { BACKEDN_API } from '../../constant';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 

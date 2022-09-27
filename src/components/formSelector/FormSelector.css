@@ -1,0 +1,23 @@
+.form-selector-container {
+    padding: 8px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.form-selector-label {
+    width: 30%;
+    font-size: 20px;
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-selector-field {
+    text-align: center;
+    margin-left: 10px;
+    width: 60%;
+    height: 50px;
+    border-style: solid;
+    border-color: lightgray;
+
+}

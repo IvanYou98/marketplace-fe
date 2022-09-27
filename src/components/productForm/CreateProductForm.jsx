@@ -5,18 +5,35 @@ import Box from '@mui/material/Box';
 import FormInput from '../formInput/FormInput'
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
+
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BACKEDN_API } from '../../constant';
+import FormSelector from '../formSelector/FormSelector';
 
 const ProductForm = () => {
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
+    const [options, setOptions] = useState([]);
     const [price, setPrice] = useState(0);
     const [desc, setDesc] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const navigate = useNavigate();
 
+
+    useEffect(() => {
+        axios.get(`${BACKEDN_API}/category`)
+            .then(res => {
+                console.log(res.data);
+                setOptions(res.data);
+            }).catch(err => {
+                console.log(err)
+            })
+    }, [])
+
     const handleSubmit = () => {
+        console.log(category);
         axios.post("http://localhost:8000/api/product/", {
             title: title,
             desc: desc,
@@ -40,7 +57,7 @@ const ProductForm = () => {
                     <FormInput name="Title" value={title} setValue={setTitle} />
                 </Grid>
                 <Grid item xs={6}>
-                    <FormInput name="Category" value={category} setValue={setCategory} />
+                    <FormSelector setOption={setCategory} options={options} name="Category" />
                 </Grid>
                 <Grid item xs={6}>
                     <FormInput name="Price" value={price} setValue={setPrice} />
@@ -75,7 +92,7 @@ const ProductForm = () => {
                     <Button variant="contained" onClick={handleSubmit}>Create Post</Button>
                 </Grid>
             </Grid>
-        </Box>
+        </Box >
     )
 }
 
