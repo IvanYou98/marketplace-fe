@@ -36,7 +36,7 @@ const Header = () => {
         }).then(res => {
             dispatch(setWishList(res.data))
             axios.get(`${BACKEDN_API}/category`).then(res =>
-                console.log(res.data)
+                console.log()
             )
         }).catch(err => {
             localStorage.removeItem("token");

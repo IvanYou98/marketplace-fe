@@ -9,10 +9,12 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { BACKEDN_API } from '../../constant';
+import FormSelector from '../formSelector/FormSelector';
 
 const EditProductForm = () => {
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
+    const [options, setOptions] = useState([]);
     const [price, setPrice] = useState(0);
     const [desc, setDesc] = useState("");
     const [imageUrl, setImageUrl] = useState("");
@@ -39,19 +41,27 @@ const EditProductForm = () => {
     }
 
     useEffect(() => {
-        axios.get(`${BACKEDN_API}/product/${productId}`, {
-            headers: {
-                token: "bearer " + localStorage.getItem("token")
-            }
-        }).then(res => {
-            const prevProduct = res.data;
-            setTitle(prevProduct.title);
-            setCategory(prevProduct.categories[0]);
-            setPrice(prevProduct.price);
-            setDesc(prevProduct.desc);
-            setImageUrl(prevProduct.imgs[0]);
-            console.log(res.data);
-        })
+        axios.get(`${BACKEDN_API}/category`)
+            .then(res => {
+                console.log(res.data);
+                setOptions(res.data);
+                axios.get(`${BACKEDN_API}/product/${productId}`, {
+                    headers: {
+                        token: "bearer " + localStorage.getItem("token")
+                    }
+                }).then(res => {
+                    const prevProduct = res.data;
+                    setTitle(prevProduct.title);
+                    setCategory(prevProduct.categories[0]);
+                    setPrice(prevProduct.price);
+                    setDesc(prevProduct.desc);
+                    setImageUrl(prevProduct.imgs[0]);
+                    console.log(res.data);
+                })
+            }).catch(err => {
+                console.log(err)
+            })
+
     }, [productId])
 
     return (
@@ -61,7 +71,7 @@ const EditProductForm = () => {
                     <FormInput name="Title" value={title} setValue={setTitle} />
                 </Grid>
                 <Grid item xs={6}>
-                    <FormInput name="Category" value={category} setValue={setCategory} />
+                    <FormSelector name="Category" setOption={setCategory} options={options} defaultOption={category} />
                 </Grid>
                 <Grid item xs={6}>
                     <FormInput name="Price" value={price} setValue={setPrice} />

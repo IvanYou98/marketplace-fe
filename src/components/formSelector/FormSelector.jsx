@@ -2,9 +2,20 @@ import React from 'react'
 import { Select, MenuItem } from '@mui/material';
 import { useState } from 'react';
 import "./FormSelector.css"
+import { useEffect } from 'react';
 
-const FormSelector = ({ setOption, options, name }) => {
+const FormSelector = ({ setOption, options, name, defaultOption }) => {
+    const findIndexOf = (arr, item) => {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === item) return i;
+        }
+        return -1;
+    }
+
     const [optionIdx, setOptionIdx] = useState(0);
+    useEffect(() => {
+        defaultOption && setOptionIdx(findIndexOf(options, defaultOption))
+    }, [defaultOption, options])
 
     return (
         <div className='form-selector-container'>

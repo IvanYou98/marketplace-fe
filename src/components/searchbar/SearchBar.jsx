@@ -27,7 +27,6 @@ const SearchBar = () => {
     useEffect(() => {
         axios.get(`${BACKEDN_API}/category`)
             .then(res => {
-                console.log(res.data);
                 setOptions(["All", ...res.data]);
             }).catch(err => {
                 console.log(err)
